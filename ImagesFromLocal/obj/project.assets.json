@@ -229,11 +229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\m2sys_task\\ImagesFromLocal\\ImagesFromLocal\\ImagesFromLocal.csproj",
+      "projectUniqueName": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\ImagesFromLocal.csproj",
       "projectName": "ImagesFromLocal",
-      "projectPath": "D:\\m2sys_task\\ImagesFromLocal\\ImagesFromLocal\\ImagesFromLocal.csproj",
+      "projectPath": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\ImagesFromLocal.csproj",
       "packagesPath": "C:\\Users\\zonayed\\.nuget\\packages\\",
-      "outputPath": "D:\\m2sys_task\\ImagesFromLocal\\ImagesFromLocal\\obj\\",
+      "outputPath": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zonayed\\AppData\\Roaming\\NuGet\\NuGet.Config",

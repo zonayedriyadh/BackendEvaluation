@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\wwwroot\\image_b7ca3f51-9a96-4f3b-a7d1-e776b955a276.jpg",
+      "PackagePath": "staticwebassets\\image_b7ca3f51-9a96-4f3b-a7d1-e776b955a276.jpg"
+    },
+    {
+      "Id": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\wwwroot\\image_d9e12e29-359e-491f-b364-490ea547f46e.jpg",
+      "PackagePath": "staticwebassets\\image_d9e12e29-359e-491f-b364-490ea547f46e.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.ImagesFromLocal.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.ImagesFromLocal.props",
+      "PackagePath": "build\\ImagesFromLocal.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.ImagesFromLocal.props",
+      "PackagePath": "buildMultiTargeting\\ImagesFromLocal.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.ImagesFromLocal.props",
+      "PackagePath": "buildTransitive\\ImagesFromLocal.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
