@@ -22,6 +22,7 @@ namespace ImagesFromLocal.Controllers
         [HttpPost]
         public async Task<ResponseDownload> Post(RequestDownload reqDownLoad)
         {
+            reqDownLoad.MaxDownloadAtOnce = reqDownLoad.MaxDownloadAtOnce <= 0 ? 1 : reqDownLoad.MaxDownloadAtOnce;
             currentDM = new DownloadManager()
             {
                 currentDownloadNo = 0,
@@ -31,10 +32,10 @@ namespace ImagesFromLocal.Controllers
             };
             
             
-            /*if (!Directory.Exists(currentDM.filePath))
+            if (!Directory.Exists(currentDM.filePath))
             {
                 Directory.CreateDirectory(currentDM.filePath);
-            }*/
+            }
 
             currentDM.responseDownload = new ResponseDownload()
             {
@@ -43,116 +44,19 @@ namespace ImagesFromLocal.Controllers
             };
 
             await currentDM.downloadImages();
-
             return currentDM.responseDownload;
         }
 
-        /*private async void downloadImages()
+        [Route("get-Image-by-name/{image_name}")]
+        [HttpGet]
+        public string GetImageByName(string image_name)
         {
-            
-            if (currentDM != null && currentDM.currentDownloadNo < currentDM.imgUrlCount)
+            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/" + image_name)))
             {
-                List<Byte[]> bytes = new List<Byte[]>();
-                
-                int downloadUpTo = (currentDM.currentDownloadNo + currentDM.reqestDownload.MaxDownloadAtOnce);
-                bool willDownloadFinish = false;
-                if(downloadUpTo >= (currentDM.imgUrlCount))
-                {
-                    downloadUpTo = currentDM.imgUrlCount;
-                    willDownloadFinish = true;
-                }
-                
-                //downloadUpTo = downloadUpTo >= (currentDM.imgUrlCount-1) ?currentDM.imgUrlCount-1 :downloadUpTo;
-                try
-                {
-                    while (currentDM.currentDownloadNo < downloadUpTo)
-                    {
-                        using (HttpClient client = new HttpClient())
-                        {
-                            HttpResponseMessage response = await client.GetAsync(currentDM.reqestDownload.ImageUrls.ElementAt(currentDM.currentDownloadNo));
-                            bytes.Add(await response.Content.ReadAsByteArrayAsync());
-                            //return File(content, "image/png", parammodel.modelname);
-                        }
-                        currentDM.currentDownloadNo++;
-                    }
-                    saveImagesToFolder(bytes);
-                    if(!willDownloadFinish)
-                        downloadImages();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    currentDM.responseDownload.Success = false;
-                    currentDM.responseDownload.Message = ex.Message;
-                }
+                byte[] image = System.IO.File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/" + image_name));
+                return Convert.ToBase64String(image);
             }
-
-        }*/
-
-        /*public void saveImagesToFolder(List<Byte[]> bytes)
-        {
-            foreach (Byte[] imageData in bytes)
-            {
-                string imageName = string.Format(@"image_{0}.jpg", Guid.NewGuid());
-                string imagePath = Path.Combine(currentDM.filePath, imageName);
-                System.IO.File.WriteAllBytes(imagePath, imageData);
-                currentDM.responseDownload.UrlAndNames.Add(imageName, "");
-            }
-        }*/
-
-            /*[HttpPost]
-            public async Task<ResponseDownload> Post(RequestDownload reqDownLoad)
-            {
-                ResponseDownload responseDownload = new ResponseDownload() {
-                    Success = true,
-                    Message = "",
-                    UrlAndNames = new Dictionary<string, string>()
-                };
-                try
-                {
-                    string folderName = "Downloads";
-                    //HttpClient client = new HttpClient();
-                    if (!Directory.Exists(_environment.ContentRootPath+ "\\"+ folderName + "\\"))
-                    {
-                        Directory.CreateDirectory(_environment.ContentRootPath + "\\" + folderName + "\\");
-                    }
-
-                    foreach (var item in reqDownLoad.ImageUrls)
-                    {
-                        //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(item);
-                        //request.Method = "GET";
-                        //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                        //Stream stream = response.GetResponseStream();
-                        //byte[] imageData = new byte[response.ContentLength];
-                        //Image image = Image.FromStream(new MemoryStream(imageData));
-                        //File.WriteAllBytes(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "image1.jpg"), imageData);
-                        //string fileName = Path.Combine((_environment.WebRootPath + "\\Upload\\"), "image1.jpg");
-                        //System.IO.File.WriteAllBytes(fileName, imageData);
-
-                        //responseDownload.UrlAndNames[item] = fileName;
-
-
-                    using (HttpClient client = new HttpClient())
-                    {
-                        HttpResponseMessage response = await client.GetAsync(item);
-                        byte[] imageData = await response.Content.ReadAsByteArrayAsync();
-                        string fileName = Path.Combine((_environment.ContentRootPath + "\\" + folderName + "\\"), string.Format(@"image_{0}.jpg", Guid.NewGuid()));
-                        System.IO.File.WriteAllBytes(fileName, imageData);
-                        responseDownload.UrlAndNames.Add(item,fileName);
-                        //return File(content, "image/png", parammodel.modelname);
-                    }
-                }
-                
-                
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                responseDownload.Success = false;
-            }
-
-            return responseDownload;
-            
-        }*/
+            return "Image not found";
+        }
     }
 }

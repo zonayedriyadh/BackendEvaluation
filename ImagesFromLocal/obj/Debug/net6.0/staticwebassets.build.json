@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ddaDCfqyWB401odhvXJ32jKZHo3iROIb+lDl2kaIs8s=",
+  "Hash": "W5/OMXkgNBShAqqkckYtWtKK7VKVzjuo916aM2Tu47w=",
   "Source": "ImagesFromLocal",
   "BasePath": "_content/ImagesFromLocal",
   "Mode": "Default",
@@ -15,40 +15,5 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [
-    {
-      "Identity": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\wwwroot\\image_b7ca3f51-9a96-4f3b-a7d1-e776b955a276.jpg",
-      "SourceId": "ImagesFromLocal",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\wwwroot\\",
-      "BasePath": "_content/ImagesFromLocal",
-      "RelativePath": "image_b7ca3f51-9a96-4f3b-a7d1-e776b955a276.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\image_b7ca3f51-9a96-4f3b-a7d1-e776b955a276.jpg"
-    },
-    {
-      "Identity": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\wwwroot\\image_d9e12e29-359e-491f-b364-490ea547f46e.jpg",
-      "SourceId": "ImagesFromLocal",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\wwwroot\\",
-      "BasePath": "_content/ImagesFromLocal",
-      "RelativePath": "image_d9e12e29-359e-491f-b364-490ea547f46e.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\image_d9e12e29-359e-491f-b364-490ea547f46e.jpg"
-    }
-  ]
+  "Assets": []
 }
