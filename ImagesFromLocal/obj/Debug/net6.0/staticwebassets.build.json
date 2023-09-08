@@ -1,19 +1,11 @@
 {
   "Version": 1,
-  "Hash": "W5/OMXkgNBShAqqkckYtWtKK7VKVzjuo916aM2Tu47w=",
+  "Hash": "0+DMl7f7b1sp4WP0iq9Bm8UmGWMNXOnoSBkpV937QlE=",
   "Source": "ImagesFromLocal",
   "BasePath": "_content/ImagesFromLocal",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "ImagesFromLocal\\wwwroot",
-      "Source": "ImagesFromLocal",
-      "ContentRoot": "D:\\m2sys_task\\BackendEvaluation\\ImagesFromLocal\\wwwroot\\",
-      "BasePath": "_content/ImagesFromLocal",
-      "Pattern": "**"
-    }
-  ],
+  "DiscoveryPatterns": [],
   "Assets": []
 }

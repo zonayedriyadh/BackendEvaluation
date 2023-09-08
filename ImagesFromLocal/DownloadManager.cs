@@ -35,8 +35,16 @@
                         using (HttpClient client = new HttpClient())
                         {
                             HttpResponseMessage response = await client.GetAsync(reqestDownload.ImageUrls.ElementAt(currentDownloadNo));
-                            Byte[] imageData = await response.Content.ReadAsByteArrayAsync();
-                            bytesAndUrl.Add(new NameAndUrl() { bytes = imageData, url = reqestDownload.ImageUrls.ElementAt(currentDownloadNo) });
+                            if(response.IsSuccessStatusCode)
+                            {
+                                Byte[] imageData = await response.Content.ReadAsByteArrayAsync();
+                                bytesAndUrl.Add(new NameAndUrl() { bytes = imageData, url = reqestDownload.ImageUrls.ElementAt(currentDownloadNo) });
+                            }
+                            else
+                            {
+                                responseDownload.Message += " Download failed at " + reqestDownload.ImageUrls.ElementAt(currentDownloadNo);
+                            }
+                            
                             //return File(content, "image/png", parammodel.modelname);
                         }
                         currentDownloadNo++;
