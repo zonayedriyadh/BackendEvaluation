@@ -29,7 +29,7 @@ namespace ImagesFromLocal.Controllers
                 currentDownloadNo = 0,
                 requestDownload = reqDownLoad,
                 imageUrlsCount = reqDownLoad.ImageUrls.Count(),
-                filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads")
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), "Downloads")
             };
             
             
@@ -52,7 +52,7 @@ namespace ImagesFromLocal.Controllers
         [HttpGet]
         public string GetImageByName(string image_name)
         {
-            var path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Uploads", image_name);
+            var path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Downloads", image_name);
             if (System.IO.File.Exists(path))
             {
                 byte[] image = System.IO.File.ReadAllBytes(path);
