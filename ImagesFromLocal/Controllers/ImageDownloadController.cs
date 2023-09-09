@@ -44,7 +44,7 @@ namespace ImagesFromLocal.Controllers
                 UrlAndNames = new Dictionary<string, string>(),
             };
 
-            await currentDM.downloadImages();
+            await currentDM.DownloadImages();
             return currentDM.responseDownload;
         }
 

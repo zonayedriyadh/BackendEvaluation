@@ -8,17 +8,17 @@
         public RequestDownload reqestDownload;
         public ResponseDownload responseDownload;
 
-        public struct NameAndUrl
+        public struct ImageDataAndUrl
         {
             public Byte[] bytes;
             public string url;
         }
 
-        public async Task<ResponseDownload> downloadImages()
+        public async Task<ResponseDownload> DownloadImages()
         {
             if (currentDownloadNo < imgUrlCount)
             {
-                List<NameAndUrl> bytesAndUrl = new List<NameAndUrl>();
+                List<ImageDataAndUrl> imageDataAndUrl = new List<ImageDataAndUrl>();
 
                 int downloadUpTo = (currentDownloadNo + reqestDownload.MaxDownloadAtOnce);
                 bool willDownloadFinish = false;
@@ -37,7 +37,7 @@
                             if(response.IsSuccessStatusCode)
                             {
                                 Byte[] imageData = await response.Content.ReadAsByteArrayAsync();
-                                bytesAndUrl.Add(new NameAndUrl() { bytes = imageData, url = reqestDownload.ImageUrls.ElementAt(currentDownloadNo) });
+                                imageDataAndUrl.Add(new ImageDataAndUrl() { bytes = imageData, url = reqestDownload.ImageUrls.ElementAt(currentDownloadNo) });
                             }
                             else
                             {
@@ -46,9 +46,9 @@
                         }
                         currentDownloadNo++;
                     }
-                    SaveImagesToFolder(bytesAndUrl);
+                    SaveImagesToFolder(imageDataAndUrl);
                     if (!willDownloadFinish)
-                        await downloadImages();
+                        await DownloadImages();
                     else
                         return responseDownload;
                 }
@@ -61,9 +61,9 @@
             }
             return responseDownload;
         }
-        public void SaveImagesToFolder(List<NameAndUrl> downloadedImages)
+        public void SaveImagesToFolder(List<ImageDataAndUrl> downloadedImages)
         {
-            foreach (NameAndUrl imageData in downloadedImages)
+            foreach (ImageDataAndUrl imageData in downloadedImages)
             {
                 string imageName = string.Format(@"image_{0}.png", Guid.NewGuid());
                 string imagePath = Path.Combine(filePath, imageName);
