@@ -16,7 +16,6 @@
 
         public async Task<ResponseDownload> downloadImages()
         {
-
             if (currentDownloadNo < imgUrlCount)
             {
                 List<NameAndUrl> bytesAndUrl = new List<NameAndUrl>();
@@ -43,9 +42,7 @@
                             else
                             {
                                 responseDownload.Message += " Download failed at " + reqestDownload.ImageUrls.ElementAt(currentDownloadNo);
-                            }
-                            
-                            //return File(content, "image/png", parammodel.modelname);
+                            }                            
                         }
                         currentDownloadNo++;
                     }

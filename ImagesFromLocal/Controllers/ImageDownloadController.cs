@@ -29,7 +29,7 @@ namespace ImagesFromLocal.Controllers
                 currentDownloadNo = 0,
                 reqestDownload = reqDownLoad,
                 imgUrlCount = reqDownLoad.ImageUrls.Count(),
-                filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads")// string.IsNullOrWhiteSpace(_environment.WebRootPath)? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"):Path.Combine(_environment.WebRootPath, "\\Downloads\\"),
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads")
             };
             
             
