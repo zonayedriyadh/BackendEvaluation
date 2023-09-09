@@ -4,7 +4,7 @@
     {
         public int currentDownloadNo;
         public string filePath;
-        public int imgUrlCount;
+        public int imageUrlsCount;
         public RequestDownload reqestDownload;
         public ResponseDownload responseDownload;
 
@@ -16,16 +16,16 @@
 
         public async Task<ResponseDownload> DownloadImages()
         {
-            if (currentDownloadNo < imgUrlCount)
+            if (currentDownloadNo < imageUrlsCount)
             {
                 List<ImageDataAndUrl> imageDataAndUrl = new List<ImageDataAndUrl>();
 
                 int downloadUpTo = (currentDownloadNo + reqestDownload.MaxDownloadAtOnce);
-                bool willDownloadFinish = false;
-                if (downloadUpTo >= imgUrlCount)
+                bool isAllImagesCovered = false;
+                if (downloadUpTo >= imageUrlsCount)
                 {
-                    downloadUpTo = imgUrlCount;
-                    willDownloadFinish = true;
+                    downloadUpTo = imageUrlsCount;
+                    isAllImagesCovered = true;
                 }
                 try
                 {
@@ -47,7 +47,7 @@
                         currentDownloadNo++;
                     }
                     SaveImagesToFolder(imageDataAndUrl);
-                    if (!willDownloadFinish)
+                    if (!isAllImagesCovered)
                         await DownloadImages();
                     else
                         return responseDownload;

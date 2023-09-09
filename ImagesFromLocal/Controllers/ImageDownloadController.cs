@@ -28,7 +28,7 @@ namespace ImagesFromLocal.Controllers
             {
                 currentDownloadNo = 0,
                 reqestDownload = reqDownLoad,
-                imgUrlCount = reqDownLoad.ImageUrls.Count(),
+                imageUrlsCount = reqDownLoad.ImageUrls.Count(),
                 filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads")
             };
             
