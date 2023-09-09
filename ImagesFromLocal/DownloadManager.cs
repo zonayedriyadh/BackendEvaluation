@@ -5,7 +5,7 @@
         public int currentDownloadNo;
         public string filePath;
         public int imageUrlsCount;
-        public RequestDownload reqestDownload;
+        public RequestDownload requestDownload;
         public ResponseDownload responseDownload;
 
         public struct ImageDataAndUrl
@@ -20,7 +20,7 @@
             {
                 List<ImageDataAndUrl> imageDataAndUrl = new List<ImageDataAndUrl>();
 
-                int downloadUpTo = (currentDownloadNo + reqestDownload.MaxDownloadAtOnce);
+                int downloadUpTo = (currentDownloadNo + requestDownload.MaxDownloadAtOnce);
                 bool isAllImagesCovered = false;
                 if (downloadUpTo >= imageUrlsCount)
                 {
@@ -33,15 +33,15 @@
                     {
                         using (HttpClient client = new HttpClient())
                         {
-                            HttpResponseMessage response = await client.GetAsync(reqestDownload.ImageUrls.ElementAt(currentDownloadNo));
+                            HttpResponseMessage response = await client.GetAsync(requestDownload.ImageUrls.ElementAt(currentDownloadNo));
                             if(response.IsSuccessStatusCode)
                             {
                                 Byte[] imageData = await response.Content.ReadAsByteArrayAsync();
-                                imageDataAndUrl.Add(new ImageDataAndUrl() { bytes = imageData, url = reqestDownload.ImageUrls.ElementAt(currentDownloadNo) });
+                                imageDataAndUrl.Add(new ImageDataAndUrl() { bytes = imageData, url = requestDownload.ImageUrls.ElementAt(currentDownloadNo) });
                             }
                             else
                             {
-                                responseDownload.Message += " Download failed at " + reqestDownload.ImageUrls.ElementAt(currentDownloadNo);
+                                responseDownload.Message += " Download failed at " + requestDownload.ImageUrls.ElementAt(currentDownloadNo);
                             }                            
                         }
                         currentDownloadNo++;

@@ -27,7 +27,7 @@ namespace ImagesFromLocal.Controllers
             currentDM = new DownloadManager()
             {
                 currentDownloadNo = 0,
-                reqestDownload = reqDownLoad,
+                requestDownload = reqDownLoad,
                 imageUrlsCount = reqDownLoad.ImageUrls.Count(),
                 filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads")
             };
