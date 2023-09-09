@@ -68,7 +68,7 @@
         {
             foreach (NameAndUrl imageData in downloadedImages)
             {
-                string imageName = string.Format(@"image_{0}.jpg", Guid.NewGuid());
+                string imageName = string.Format(@"image_{0}.png", Guid.NewGuid());
                 string imagePath = Path.Combine(filePath, imageName);
                 System.IO.File.WriteAllBytes(imagePath, imageData.bytes);
                 responseDownload.UrlAndNames.Add(imageName, imageData.url);

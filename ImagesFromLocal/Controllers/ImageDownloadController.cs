@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
+using System;
 using System.Net;
 using System.Drawing;
 using Microsoft.AspNetCore.Hosting.Server;
@@ -22,13 +23,13 @@ namespace ImagesFromLocal.Controllers
         [HttpPost]
         public async Task<ResponseDownload> Post(RequestDownload reqDownLoad)
         {
-            reqDownLoad.MaxDownloadAtOnce = reqDownLoad.MaxDownloadAtOnce <= 0 ? 1 : reqDownLoad.MaxDownloadAtOnce;
+            reqDownLoad.MaxDownloadAtOnce = reqDownLoad.MaxDownloadAtOnce == 0 ? 1 : Math.Abs(reqDownLoad.MaxDownloadAtOnce);
             currentDM = new DownloadManager()
             {
                 currentDownloadNo = 0,
                 reqestDownload = reqDownLoad,
                 imgUrlCount = reqDownLoad.ImageUrls.Count(),
-                filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")// string.IsNullOrWhiteSpace(_environment.WebRootPath)? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"):Path.Combine(_environment.WebRootPath, "\\Downloads\\"),
+                filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads")// string.IsNullOrWhiteSpace(_environment.WebRootPath)? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"):Path.Combine(_environment.WebRootPath, "\\Downloads\\"),
             };
             
             
@@ -51,9 +52,10 @@ namespace ImagesFromLocal.Controllers
         [HttpGet]
         public string GetImageByName(string image_name)
         {
-            if (!Directory.Exists(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/" + image_name)))
+            var path = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Uploads", image_name);
+            if (System.IO.File.Exists(path))
             {
-                byte[] image = System.IO.File.ReadAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/" + image_name));
+                byte[] image = System.IO.File.ReadAllBytes(path);
                 return Convert.ToBase64String(image);
             }
             return "Image not found";
